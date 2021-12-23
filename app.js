@@ -97,7 +97,7 @@ if (
         ;
 
         // register fake ServiceWorker for show notification on mobile devices
-        navigator.serviceWorker.register('firebase-messaging-sw.js');
+        navigator.serviceWorker.register('/firebase-messaging-sw.js');
         Notification.requestPermission(function(permission) {
             if (permission === 'granted') {
                 navigator.serviceWorker.ready.then(function(registration) {
@@ -199,8 +199,6 @@ function sendNotification(notification) {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    // Firebase loses 'image' from the notification.
-                    // And you must see this: https://github.com/firebase/quickstart-js/issues/71
                     data: notification,
                     to: currentToken
                 })
